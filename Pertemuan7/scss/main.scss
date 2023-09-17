@@ -1,0 +1,41 @@
+// Base
+$warna-dasar: salmon;
+h1 {
+    color: $warna-dasar;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3em;
+    text-align: center;
+}
+
+// Built-in Modules: Color
+/* adjust-color($color,
+    $red: null, $green: null, $blue: null,
+    $hue: null, $saturation: null, $lightness: null,
+    $whiteness: null, $blackness: null,
+    $alpha: null
+)   -> penyesuaian warna / penambahan warna */
+
+// adjust-hue($color, $degree);     -> roda warna
+// Complement($color)               -> warna berlawanan
+// Darken($color, $amount)          -> warna akan bergeser ke atas / mendekati luar roda warna (terang)
+// Lighten($color, $amount)         -> warna akan bergeser ke bawah / mendekati tengah roda warna (putih)
+// Saturate($color, $amount)        -> warna akan bertambah kuat / murni.
+// Desaturate($color, $amount)      -> warna akan berkurang / pencahayaan hilang / memudar hingga jadi abu abu.
+// Grayscale($color)                -> membuat warna menjadi abu / desaturate 100%
+// Mix($color, $color, $weight)     -> mencampur warna
+// Fade-in($color, $amount)         -> element transparant menjadi solid
+// Fade-out($color, $amount)        -> element solid menjadi transparant
+
+h1 {
+    // color: adjust-color($color: $warna-dasar, $green:100, $blue: 40),
+    // color: adjust-hue($color: $warna-dasar, $degrees: 300deg),
+    // color: complement($color: $warna-dasar),
+    // color: darken($color: $warna-dasar, $amount: 20%),
+    // color: lighten($color: $warna-dasar, $amount: 20%),
+    // color: saturate($color: $warna-dasar, $amount: 30%),
+    // color: desaturate($color: $warna-dasar, $amount: 50%),
+    // color: grayscale($color: $warna-dasar);
+    // color: mix($warna-dasar, blue, 80%),
+    // color: fade-in(rgba(250, 128, 114, 0) , 0.5);                       /* opacity menjadi 0.5 */
+    color: fade-out($color: $warna-dasar, $amount: 0.8);                   /* opacity menjadi 0.2 */
+}

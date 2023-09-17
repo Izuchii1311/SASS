@@ -1,0 +1,694 @@
+Materi Front End
+
+CSS (Cascading Style Sheets) -- digunakan untuk melakukan styling pada website.
+
+
+# CSS Dasar
+    Selector = digunakan untuk memilih elemen yang akan diberikan styling.
+    Pseudo-Class = kata kunci yang digunakan untuk menentukan status / keadaan.
+            :link              // Memberikan warna awal pada link
+            :hover             // Memberikan warna ketika melakukan hover
+            :active            // Memberikan warna ketika di klik
+            :visited           // Memberikan warna sudah dikunjungi
+
+            :first-child       // child pertama dari parentnya
+            :last-child        // child terakhir dari parentnya
+            :nth-child(n)      // child dari element ke berapa?
+
+            :first-of-type     // element pertama dari parentnya
+            :last-of-type      // element terakhir dari parentnya
+
+    Spesificity = digunakan untuk menentukan mana yang lebih kuat
+        ( Inline = 1000   #id = 100   .class = 10   element = 0 )
+
+
+# CSS Layouting
+    Mengatur tata letak element (Box Model, Float, Positioning).
+
+    Display = bagaimana element menempati ruang.
+        *hanya block & inline-block yang bisa diatur ukuran-nya.
+            inline              // Biasanya nilai default di dalam element text (ke-samping).
+            block               // Biasanya nilai default element yang akan menambah Block baru di (bawah-nya).
+            inline-block        // Dibuat oleh user. Prilaku sama seperti inline namun akan berupa Block
+            none                // Menghilangkan Element/
+    Dimensi = mengatur ukuran.
+            ( width & height )
+                *px(absolute), % (relative terhadap parent), in, cm, mm, pt, pc
+    Overflow = mengatur konten jika melebihi ruang.
+            visible             // (Default) - akan ditampilkan
+            auto                // Jika melebihi ruang akan ada scroll & jika tidak maka tidak akan ada.
+            hidden              // Jika melebihi ruang akan dihilangkan lebih-nya.
+            scroll              // Akan menambahkan scroll.
+    Box-Model = representasi kotak / box.
+        *akan menambahkan ukuran dari box-nya.
+            margin              // mengatur jarak luar kotak
+                * (auto) = akan berada di tengah karena mengatur jarak dari kiri dan kanannya.
+            padding             // mengatur jarak element di dalam kotak
+            border              // mengatur border dari kotak
+                                (solid, dotted, dash, double)
+            content             // element element html.
+    Box-sizing = mengontrol ukuran dari total Box-Model yang ditambahkan agar ukuran tetap dengan nilai yang diberikan & agar tidak menambah ukuran.
+
+    HACK : CSS Reset
+            Cara 1
+            * { margin: 0; padding: 0; }
+
+            Cara 2
+            body, h1, p { margin: 0; padding: 0; }
+
+            Cara 3
+            CSS Reset yang dibuat oleh Eric Meyer
+
+    Float = untuk mengatur element di kiri / kanan dari parentnya.
+        *Jika normal-flow element akan ada di bawahnya.
+        *Jika menggunakan float akan out-of-flow maka akan berada di sebelah kiri atau kanannya.
+            none                // (default)
+            left                // bagiannya akan berada di sisi kiri dari parentnya.
+            right               // bagiannya akan berada di sisi kanan dari parentnya.
+
+    HACK : Clean Float -- Agar tidak terjadi collapse
+            Cara 1
+                Bisa menggunakan overflow: auto;
+            Cara 2
+                Bisa menggunakan clear: both;
+            Cara 3
+                Bisa menggunakan Mikro Clearfix (Search)
+
+    Position = Mengatur posisi element tanpa mempengaruhi element disekitarnya & akan naik 1 dimensi dari element lainnya.
+        *Mengatur posisi dengan menggunakan (top, left, right, bottom).
+            Static              // (default)
+            Relative            // - Akan naik 1 dimensi.
+                                   - Digunakan untuk menaikan dimensi / sebagai pembatas dari absolute
+                                   - Ruang yang ditempati sebelumnya masih ada (biasanya relative tidak digunakan untuk mengatur posisi).
+            Absolute            // - Akan naik 1 dimensi.
+                                   - Digunakan untuk mengatur posisi.
+                                   - Ukurannya akan relative terhadap posisi parentnya.
+                                        *Biasanya parent diberi posisi relative jadi saat kita mengatur posisi absolute contentnya tidak melebihi / diluar parentnya
+                                        *top:0; left:0; maka posisi akan ada di atas kiri
+            Fixed               // Akan selalu bergerak secara relative dengan window browsernya.
+
+    z-index = mengontrol tumpukan/stacking/layer.
+        *Jika diberi nilai angka positif maka akan diatasnya, jika negatif maka akan ada di bawahnya.
+
+
+# CSS 3
+    Border-radius = Mengatur ukuran sisi radius box / merubah menjadi tumpul.
+        *jika setengah dari lebar & tingginya akan jadi lingkaran.
+
+    Opacity = Transparansi pada element. Jika melakukan di dalam element lagi maka transparansi akan saling mewarisi.
+
+    Rgba = Bisa digunakan untuk memberikan transparansi pada warna.
+
+    Box-shadow = Digunakan untuk memberikann bayangan pada element html.
+        *Contoh multiple-shadow
+            box-shadow:
+                inset -15px 15px 15px 50px rgba(0, 0, 0, 0.3),
+                -15px 15px 15px 50px rgba(0, 0, 0, 0.3);
+
+            *<inset> = (Opsional) Membuat bayangan di dalam kotak
+            <x-offset> = untuk mengatur jarak bayangan horizontal.
+            <y-offset> = untuk mengatur jarak bayangan vertikal.
+            <blur> = untuk memberikan blur.
+            *<spread> = (Opsional) Size shadow
+            <color> = untuk memberikan warna.
+
+    Text-shadow = Digunakan untuk memberikan bayangan pada text.
+            <x-offset> = untuk mengatur jarak bayangan horizontal.
+            <y-offset> = untuk mengatur jarak bayangan vertikal.
+            <blur> = untuk memberikan blur.
+            <color> = untuk memberikan warna.
+
+    Linear-gradient = gradasi secara garis lurus.
+        *value untuk property background-image.
+            <sudut> = Menggunakan deg.
+            <arah> = untuk menentukan arah dari gradient.
+                to bottom, to left, to right, to top.
+                to left top, to left bottom, to left right, to right bottom.
+            <warna-awal>
+            <warna-akhir>
+
+        *color stop = bobot untuk warna.
+        dengan menambahkan code berikut "red 20%".
+
+    Radian Gradient = gradasi warna melingkar.
+        *value untuk property background-image.
+            <tipe> = exlips / circle.
+            <jangkauan> = jarak dari pusat gradients ke sisi terluarnya.
+                closest-corner = jarak dari titik pusat gradient ke *sudut terdekat* element.
+                closest-side = jarak dari titik pusat gradient ke *sisi terdekat* element.
+                farthest-corner = jarak dari titik pusat gradient ke *sudut terjauh* gradient.
+                farthest-side = jarak dari titik pusat gradient ke *sisi terjauh* gradient.
+             <posisi-y> , (top, center, bottom, px)
+             <posisi-x>, (left, center, right, px)
+            <warna-awal>
+            <warna-akhir>
+
+    Font-face = digunakan untuk mengelola font oleh css3.
+        *jika menggunakan ttf membuat website lebih lambat gunakan font khusus web dengan format woff.
+        download terlebih dahulu fontnya.
+        *web-font-generator
+
+    Vendor-prefix = teknik digunakan agar sintak yang dibuat kompatibel di semua browser.
+        *digunakan karena tidak semua browser support css3.
+            -webkit-<property-css3> = (Chrome, Opera New, Safari)
+            -moz-<property-css3> = (Firefox)
+            -ms-<property-css3> = (Internet Explorer)
+            -o-<property-css3> = (Opera old)
+
+        Property yang butuh prefix https://shouldiprefix.com/ atau caniuse.com atau pleeease.io/play/
+
+    Filter = memberikan filter pada element html.
+            1. blur
+            2. brightness
+            3. contrass
+            4. saturate
+            5. grayscale
+            6. sepia
+            7. hue-rotate
+            8. invert
+            9. opacity
+            10. drop-shadow
+
+    Transform = memanipulasi format visual dari element yang dimiliki.
+        *transformasi 2D & 3D
+            scale = memperbesar / memperkecil.
+            rotate = memutar.
+            skew = membuat condong / miring.
+            translate = mengubah posisi.
+
+    Transition = memungkinkan kita dapat merubah properti secara halus.
+        *transition vs. animation
+        *transisi = jika ada keadaan awal dan keadaan akhir, namun pergerakannya disebut dengan animasi.
+        *animasi = pergerakannya bisa lebih dari 2 keadaan(keyframe).
+            transition:
+                [property] = property html yang akan diberikan transisi
+                <durasi> = durasi transisi
+                [fungsi] = memberikan timing function.
+                    ease
+                    ease-in
+                    ease-out
+                    ease-in-out
+                    linear
+                    cubic-bezier(w,x,y,x)
+                [delay] = waktu tunggu sebelum memberikan durasi.
+            transition: margin-left 3s ease-in;
+
+    Animation = melakukan animasi.
+        *memiliki keyframe, bisa dengan form & to atau dengan menggunakan %.
+            @keyframes [name] {
+                from {
+                    [property-css3]
+                }
+                to {
+                    [property-css3]
+                }
+            }
+
+            animation:
+                [name] = nama animasi yang harus sama dengan keyframe.
+                [duration] = durasi animasi
+                [timing-function] = timing function
+                    ease
+                    ease-in
+                    ease-out
+                    ease-in-out
+                    linear
+                    cubic-bezier(w,x,y,x)
+                [delay] = waktu tunggu sebelum memberikan durasi.
+                [iteration-count] = mau berapa kali diulangnya (angka | infinite).
+                [direction] = animasi akan berjalan secara (normal | reverse | alternate | alternate-reverse).
+                [fill-mode] = menentukan akhir dari transisinya, agar tidak loncat ke posisi awal (none | forwards | backwards | both).
+                [play-state] = animasi berjalan (running | paused).
+
+
+# CSS Unit
+
+    CSS Value & Unit = nilai & satuan apa saja yang bisa diberikan ke dalam css.
+        - integer = bilangan bulat (hanya angka).
+            contohnya : z-index: 99;
+                        order: 3;
+        - number = bilangan angka boleh pecahan.
+            contohnya : opacity: 0.7;
+                        transform: scale(2.5);
+        - percentage = mempresentasikan dari nilai tertentu dan relatif terhadap element lain.
+            contohnya : width: 80%;
+        - dimension = number yang memiliki satuan dibelakangnya.
+            - length
+                - Absolute length = fixed.
+                    contohnya : px (pixel)
+                                pt (point)
+                                pc (pica)
+                                cm (centimeter)
+                                mm (milimeter)
+                                in (inches)
+                - Relative length = relative terhadap sesuatu.
+                    contohnya : % (relatif terhadap ukuran element parent)
+                                em (relatif terhadap ukuran font yang digunakan)
+                                    *2 em = 2x ukuran font-size dari element parent pembungkusnya
+                                     jika tidak ada font size di element pembungkusnya maka nilai default font html = 16px
+                                     Em akan mengalami penumpukan ukuran (digunakan untuk yang lain seperti menentukan length dari element)
+                                rem (relatif terhadap ukuran font "root" / html)
+                                    *2 rem = 2x ukuran font-size dari element parent pembungkusnya
+                                     jika tidak ada font size di element pembungkusnya maka nilai default html = 16px
+                                     Dia tidak akan terpengaruh / tidak akan mengalami penumpukan (biasanya digunakan untuk font)
+
+                                     *em dan rem juga bisa digunakan dalam mengatur lenght seperti padding margin dan ukurannya akan dikalikan dengan font-size parent-nya.
+                                ch (relatif terhadap karakter 0 dari font yang digunakan)
+
+                                vh % (relatif terhadap tinggi veiwport)
+                                    *satuannya adalah %, maka 100 vh akan memenuhi sebanyak 100% dari viewportnya / layar saat pertama kali dibuka
+                                     jika ada kontent baru, maka akan tampil di bawahnya jika ukurannya sudah melewati 100% dari viewport yang tadi
+                                vw % (relatif terhadap lebar viewport)
+
+                                vmin % (relatif terhadap dimensi terkecil viewport)
+                                    *vmin akan mengambil ukuran viewport yang lebih kecilnya
+                                     misalkan di hp vmin itu lebar nya jadi ukurannya akan menyesuaikan dengan lebar ukuran handphone
+                                    *vmax akan mengambil ukuran viewport yang lebih besarnya
+                                     misalkan di hp vmax itu tinggi nya jadi ukuran lebarnya akan menyesuaikan dengann tinggi dari handphonenya
+                                    *karena jika viewport hp itu biasnya tinggi layarnya (vmax) dan lebarnya pendek (vmin)
+                                vmax % (relatif terhadap dimensi terbesar viewport)
+                                    *viewport = lebar atau ukuran dari layar yang digunakan.
+            - angle = sudut.
+                contohnya : rotate: (30deg);                (derajat).
+                            rotate: (33.3rad);              (radiant).
+                            rotate: (0.523333333grad);      (gradiant).
+                            rotate: (0.8333333turn);        (putaran).
+            - time = waktu.
+                contohnya : transition: 300ms;
+                            transition: 0.3s;
+            - resolution = resolusi dari tampilan website / biasanya digunakan saat ingin mencetak sesuatu.
+                contohnya : dpi (dot per inch).
+                            dpcm (dot per centimeter).
+                            dppx (dot per pixel).
+
+                            @media print and (min-resolution: 300dpi) { ... }
+
+    Function di dalam css yaitu calc()
+        calc(), sebuah fungsi pada css yang memungkinkan kita untuk melakukan operasi matematika pada nilai dari sebuah properti.
+            nilai yang bisa diberikan fungsi calc()
+                lenght (px, pt, cm ...), angle (deg, rad, turn ...), time (ms, s), percentage (%), angka (opacity / z-index).
+                contoh :
+                    width: calc(20px + 30px);       pertambahan
+                    width: calc(20% - 30px);        pengurangan
+                    width: calc(20% * 3);           perkalian *syaratnya harus ada nilai yang tidak memiliki satuan.
+                    width: calc(20% / 3);           pembagian *syaratnya harus ada nilai yang tidak memiliki satuan.
+
+                    *harus diberikan spasi antara operatornya
+
+                    calc nesting
+                    width: calc(calc(100% / 3) - calc(1rem * 2));
+                    width: calc((100% / 3) - (1rem * 2));
+                    width: calc(100% / 3 - 1rem * 2);
+
+
+# Bootstrap 5
+    Mempelajari :
+        - Library AOS, sebagai animasi pada tampilan.
+        - Platform GSAP, sebagai animasi pada text dan tampilan.
+        - Library tilt.js, sebagai animasi 3D.
+        - Menerapkan form to google sheets. https://github.com/jamiewilson/form-to-google-sheets
+
+
+# FlexBox (Flexible Box Module)
+
+    FlexBox, adalah model layout 1 dimensi yang dapat mengatur jarak & alignment (penjajaran) antar item dalam sebuah container.
+        1 Dimensi ? artinya hanya dapat mengatur 1 dimensi pada saat tertentu, antara baris atau kolom, tidak bisa keduanya sekaligus.
+        2 Dimensi ? Css Grid
+
+        *digunakan untuk menyusun, mengsejajarkan dan mendistribusikan jarak antar item di dalam sebuah container, meskipun ukurannya dinamis / tidak tahu.
+
+        main axis = sejajar secara horizontal.
+        cross axis = sejajar secara vertikal.
+        main size = ukuran dari container.
+        cross size = ukuran dari kolomnya.
+        main start & main end = menentukan awal dari element horizontal.
+        cross start & cross end = menentukan awal dari element vertical.
+
+        property pada container.
+            display: flex;
+                *membuat sebuah element parent menjadi flexbox dan membuat element element di dalamnya bisa berprilaku flex juga.
+                jika menggunakan float pasti collapse, maka gunakan clear.
+
+            flex-direction: row | row-reverse | column | column-reverse.
+                *arah dari flex, horizontal / vertical.
+
+            flex-wrap: nowrap | wrap | wrap-reverse
+                *items di dalam container akan berada pada satu baris meskipun ukurannya tidak cukup, wrap memungkinkan untuk memindahkan item ke bawahnya.
+
+            justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly.
+                *mengatur rata dari element element di dalamnya.
+
+            align-items: flex-start | flex-end | center | stretch | baseline
+                *mengatur kesejajaran item secara vertical.
+                *stretch heightnya akan memenuhi container jika tidak diberikan heightnya.
+
+            align-content: flex-start | flex-end | center | stretch | space-between | space-arround.
+                *sama seperti align-items, tapi berlaku jika itemnya lebih dari 1 baris.
+
+        property pada items.
+            order: 2;
+                *untuk mengatur urutan dari element elementnya
+
+            flex-grow / flex: 2;
+                *untuk mengatur ukuran dari itemnya.
+                *sama jika memberikan align-itemnya stretch
+
+            align-self: flex-start | flex-end | stretch
+                *mengatur hanya 1 element di dalam barisnya yang mau diposisikan dimana terhadap cross axisnya.
+
+    Catatan : Flexbox
+
+        *Jika ingin menyimpan text berada di tengah tanpa Flexbox.
+                text-align: center;  -- Horizotal
+                line-height: 100px;  -- Vertical (Harus sama dengan tinggi pembungkusnya)
+        *Jika ingin menyimpan box content berada di tengah tanpa Flexbox.
+                margin: 250px auto;             -- Horizontal (Harus sama dengan tinggi pembungkusnya)
+                transform: translateY(-50px);   -- Vertical
+
+        *Jika ingin menyimpan box content / text berada di tengah dengan Flexbox.
+                display: flex;                  -- Horizontal
+                margin: auto;                   -- Vertical
+
+
+
+        CSS Siblings (Saudara kandung).
+            misalkan:
+                h1 + p { font-size:24px; } maka font yang akan membesar yaitu p, setelah h1.
+                h1 ~ p { font-size:24px; } maka font yang akan membesar keduanya.
+
+        Pseudo Class
+            :  biasanya digunakan dalam menerapkan gaya pada css.
+            :: biasanya digunakan dalam memanipulasi atau memilih bagian khusus dari element yang tidak dapat diwakili oleh element asinya.
+
+            pseudo class source : https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+
+
+# CSS Grid
+
+    CSS Grid, untuk mendefinisikan sistem layout berbentuk grid dalam 2 dimensi (baris & kolom).
+        *jika Flexbox hanya 1 dimensi antara baris saja / kolom saja.
+        *web browser sebaiknya menggunakan Firefox karena memiliki grid inspector.
+
+        display: grid;
+
+        CSS Grid Terminology
+            - Grid container, element pembungkus grid.
+                display: grid;
+
+            - Grid item, element element yang berada (1 level) di dalam grid container.
+
+            - Grid line, garis horizontal (kolom) & vertical (baris) yang memisahkan grid menjadi beberapa bagian dan ditandai dengan angka.
+
+            - Grid cell, perpotongan / pertemuan antara baris & kolom di dalam grid.
+
+            - Grid area, kumpulan lebih dari 1 cell yang membentuk kotak.
+
+            - Grid track, ukuran / jarak antara 2 grid line, bisa horizontal (kolom) atau vertical (baris).
+
+            - Grid gap, jarak antara cell.
+
+
+        CSS Grid Properties
+            Property untuk mengatur Kolom & Baris.
+            - grid-template-columns & grid-template-rows
+                *Untuk mendefinisikan kolom / baris. nilai mempresentasikan ukuran grid track & spasi mempresentasikan grid line.
+
+                grid-template-columns: <track-size>  ...  | <line-name> <track-size>  ... ;
+                grid-template-rows: <track-size>  ...  | <line-name> <track-size>  ... ;
+
+                    example : grid-template-rows: [header] 1fr [main] 2fr [footer] 1fr;
+
+                    <track-size>: berupa px, %, auto, atau fr(fraction / bagian).
+                    <line-name>: nama yang bisa diberikan pada track
+
+                    Explicit & Implicit Grid.
+                    Explicit itu ketika kita menuliskan jelas kolom dan barisnya (solid).
+                    Explicit items menuliskan ukuran untuk setiap itemsnya (titik titik tebal).
+                    Implicit ketika gridnya menentukan secara otomatis sisanya. (titik titik ke arah yang tidak diberikan explicit).
+
+            Property untuk mengatur grid track yang tidak dituliskan pada grid-template(Implicit).
+            - grid-auto-columns
+            - grid-auto-rows
+
+            Property untuk mengatur penempatan item pada track / cell termasuk yang ditulis secaa Implicit.
+            - grid-auto-flow: row | column | row dense | column dense
+
+        Special Keyword & Functions.
+            - repeat()
+                *menentukan ukuran dari grid track berulang.
+                    display: grid;
+                    grid-template-columns: repeat(9, 1fr);
+
+            - min-content & max-content
+                *menentukan seberapa besar ukuran grid tracknya berdasarkan content pada sebuah item.
+                *min-content akan menyesuaikan ukuran content terpanjangnya, selanjutnya akan disimpan kebawah.
+                *max-content akan menyesuaikan ukuran semua content.
+                    display: grid;
+                    grid-template-columns: min-content | max-content;
+
+            - minmax()
+                *digunakan untuk menentukan ukuran min & max dari grid track.
+                    display: grid;
+                    grid-template-columns: minmax(200px, 300px);
+
+            - auto-fill & auto-fit
+                *menentukan jumlah item untuk berada pada grid track.
+                *biasanya digunakan di dalam repeat.
+                *jika grid tracknya tidak cukup maka secara otomatis oleh auto-fit / auto-fill content berikutnya akan disimpan dibagian bawahnya(responsive).
+
+                *jadi pembeda dari keduanya.
+                *jika contentnya sedikit dan diberi auto-fit & masih ada ruang kosong. maka explicit akan berakhir di content terakhirnya. jika auto-fill explicitnya akan berakhir di sisa ruang kosong tersebut jika masih bisa diberikan 1 content lagi.
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, 150px);
+
+        Grid Area & Gap.
+            - grid-template-area
+                *mendefinisikan grid template menggunakan nama dari areanya yang ditulis pada property grid-area pada item.
+                    grid-template-areas: "header header header" "content content sidebar"
+            - grid-area
+                *memberikan nama pada areanya
+                    grid-area: header;
+            - grid-template
+                *mendefinisikan grid-template-rows & columns & areas dalam 1 deklarasi.
+                    grid-template: <grid-template-rows> | <grid-template-areas> / <grid-template-columns>;
+            - grid-column-gap & grid-row-gap (cara lama)
+              column-gap & row-gap (cara baru)
+              gap: <grid-row-gap> <grid-column-gap>
+              *untuk mengatur ukuran antar items
+            - grid
+                *shorthand paling lengkap untuk mendefinisikan grid.
+                    <grid-template-row> <grid-template-columns> <grid-template-areas> <grid-auto-rows> <grid-auto-columns> & <grid-auto-flow>
+
+        Grid alignment
+            - justify-items, mengsejajarkan grid item pada sumbu horizontal
+                justify-items: start | end | center | stretch(default);
+                *stretch Default -- jika tidak diberikan width maka akan penuh dari lebar tiap columnnya.
+
+            - align-items, mengsejajarkan grid items pada sumbu vertical.
+                align-items: start | end | center | stretch(default);
+
+            - place-items, shorthand yang digunakan untuk menggunakan justify & align items sekaligus.
+                place-items: <align-items> <justify-items>;
+
+            - justify-content, untuk mengatur seluruh grid container pada sumbu horizontal.
+                *Syaratnya ini bisa dilakukan ketika ukuran total grid lebih kecil dari ukuran containernya, biasanya ketika grid itemsnya menggunakan ukuran yang fixed (px).
+                justify-content: start | end | center | stretch | space-arround | space-between | space-evenly;
+
+            - align-content, sama seperti justify-content tapi untuk sumbu vertical
+                align-content: start | end | center | stretch | space-arround | space-between | space-evenly;
+
+            - place-content, shorthand yang digunakan untuk menggunakan justify & align content sekaligus.
+                place-items: <justify-content> <align-content> ;
+
+        Grid Item Properties
+            - grid-column-start
+            - grid-column-end
+            - grid-row-start
+            - grid-row-end
+                *properti untuk menentukan tempat dari item dengan mengacu pada nomor atau gridline spesifik.
+                    grid-column-start: <nomor> | <nama> | span <nomor> | span <nama> | auto;
+
+                    <nomor> | <nama> = mengacu pada nomor atau nama yang kita berikan pada grid line.
+                    span <nomor> = item akan melebar sampai sejumlah nomor.
+                    span <nama> = item akan melebar sampai ke nama gridLine tertentu.
+
+                    span 3 = tambah berapa kolom, kaena mulainya (start) dari 1 span 3 = 1 + 3 maka akan berakhir di 4
+                    syaratnya harus diberikan nama dengan grid-template-columns & grid-template-rows: [nama] 100px [nama2] 1fr
+
+            - grid-column
+            - grid-row
+                *shorthand pada grid-column & grid-row
+                    grid-column: <start-line> / <end-line> | <start-line> / span <value>;
+                    grid-row: <start-line> / <end-line> | <start-line> / span <value>;
+
+            - grid-area
+                *menentukan nama area pada item sesuai dengan template yang sudah dibuat sebelumnya melalui property grid-template-areas.
+                *bisa juga digunakan sebagai shorthand untuk grid-column-start/end grid-row-start/end.
+                    grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
+
+            - justify-self
+                *digunakan untuk mengatur posisi pada item.
+                *mengatur posisi item pada sebuah cell terhadap sumbu horizontal.
+                    justify-self: start | end | center | stretch;
+            - align-self
+                *digunakan untuk mengatur posisi pada item.
+                *mengatur posisi item pada sebuah cell terhadap sumbu vertical.
+                    align-self: start | end | center | stretch;
+            - place-self
+                *shorthand digunakan untuk mengatur posisi pada item.
+                    place-self: <align-self> <justify-self>
+
+
+ul>li*5>a{Link $}
+
+# SASS
+
+    Merupakan CSS Pre-Processor.
+    File -> (compiler) -> css -> html
+
+    Kenapa disebut Pre-Processor, karena sebelum di proses oleh html ada proses compiler sebelum menjadi file css.
+    Apa itu CSS Pre-Processor, membuat script yang bukan css, yang nantinya akan di compile menjadi css.
+    Solusi dari Pre-Processor CSS.
+        > variabel
+        > mixin
+        > import & uses
+        > operator & built-in Function
+        > nested css
+
+    Ada Sass, Less, Stylus.
+    Install Extension Live Sass Compiler.
+    Agar scss membuat folder terpisah
+    Buka file > preferences > settings 'live sass compiler' > Formats > ubah "savePath": null, menjadi "savePath": css,
+
+    SASS (penulisan nesting css) vs. SCSS (penulisan seperti css)  >> CSS
+
+        Nesting
+            digunakan untuk membuat hirarki visual yang lebih jelas untuk selector CSS.
+
+            & -- Parent Selector, untuk memberi tahu jika element ini ada di atas dari parentnya.
+            bisa juga digunakan untuk sudo class &:hover
+            bisa juga mempersingkat penamaan dan dapat memanggil selector parentnya
+            misalkan : .main { .main-header{} }  Bisa dirubah menjadi .main { &-header{} } jika nestingnya ilang bisa dengan .main { & &-header{} }
+                & &-header bisa dirubah dengan cara interpolasi dengan cara #{&}
+
+        Variable
+            *Variabel di dalam SASS memiliki fitur variable Scope & variable Local.
+            bisa juga merubah variable local menjadi variable global dengan menambahkan !global
+                misalkan : $primary-color: #f4f1de !global;
+            bisa juga membuat variable seperti array assosiati dengan menggunakan map.
+
+            // CSS Variables
+            :root {
+                --primary-color: #f4f1de;
+                --secondary-color: #f2cc8f;
+                --text-color: #e07a5f;
+            }
+            body { background-color: var(--primary-color); }
+            h1 { color: var(--text-color); }
+
+
+            // SASS Variables
+            $primary-color: #f4f1de;
+            $secondary-color: #f2cc8f;
+            $text-color: #e07a5f;
+
+            body { background-color: $primary-color; }
+            h1 { color: $text-color; }
+
+
+            // MAP
+            $alert: (
+                'danger': red,
+                'success': green,
+                'warning': orange
+            );
+
+            h1 {
+                color: map-get($alert, 'success');
+            }
+
+        Mixin
+            kumpulan style yang dapat kita gunakan berulang ulang, seperti function agar tidak menuliskan code secara berulang.
+
+            @mixin = membuat mixin
+            @include = memanggil mixin
+
+            Contoh penggunaan mixin.
+                @mixin inline-list {
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    li { display: inline-block; }
+                }
+                .header ul { @include inline-list(); }
+
+            Multiple Argumen
+                @mixin flex-box($direction: row, $space: center) {
+                display: flex;
+                justify-content: $space;
+                align-items: center;
+                flex-direction: $direction;
+            }
+            .container {
+                width: 600px; height: 400px; background-color: #eaeaea;
+                @include flex-box(row-reverse, space-around);
+            }
+
+        Modules
+            *sebuah teknik agar code Sass menjadi lebih modular / mudah untuk dikelola.
+
+            @import = pisahkan code nya menjadi beberapa file partials lalu import code nya.
+                panggil : @import 'modules/mixin';
+                *kekurangan import
+                    - punya banyak problem, membuat semua variabel, mixin & function akan secara global dapat diakses.
+                    - karena semuanya menjadi global, kita harus memberikan prefix untuk menandakan itu milik kita, jika kita menggunakan framework, & itu ribet.
+                    - @extend rules juga menjadi global, @import berulang menjadi compile lama.
+
+            @use = pengganti import namun hanya bisa digunakan di dart sass.
+                *karena jika sass yang ada di vs code itu adalah lib sass
+                    Menggunakan @use (semuanya tidak menjadi global lagi)
+                        Pemanggilan akan bergantung dengan mixin tertentu untuk contoh kasus berikut.
+                            @use 'mixin';
+                            .footer ul {
+                                @include mixin.inline-list();
+                            }
+
+                            jika tidak ada bisa langsung dipanggil.
+
+                        Lalu includenya arahkan juga file yang dipanggil misalkan mixin.inline-list()
+
+                alias
+                    @use 'sub-modules/mixin' as m;
+                    .header ul { @include m.inline-list(); }
+
+                Cara menjalankan @use dengan terminal
+                    sass (nama folder sass) (nama folder css)
+                    sass sass/main.scss css/main.css
+
+            download sass pindahkan ke program files. dan path di env tambahkan dan arahkan ke folder sass.
+
+            jika file sass diberikan _ menandakan itu bukan file utamanya dan tidak akan melalui proses kompilasi.
+
+        Flow Control
+            mengatur alur kendali dari script SASS.
+
+            @if @else @else if
+            @for
+            @while
+            @each
+
+            function untuk mengelola warna (lighten & darken)
+                lighten($color: #000, $amount: 0);
+                lighten($color: salmon, $amount: 10%);
+                    *warna akan dibuat terang sebanyak 10%
+
+            Untuk contoh code ada di pertemuan 6 SASS.
+
+        Built-in Function / Modules
+            Fungsi-fungsi bawaan SASS.
+            Color, List, Map, Math, Meta, Selector, String.
+
+            Documentation
+            https://sass-lang.com/documentation/modules
+
+            Untuk contoh code ada di pertemuan 7 SASS.
